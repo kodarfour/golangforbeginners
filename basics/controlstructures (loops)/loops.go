@@ -20,6 +20,67 @@ func main() {
 	for i := 0; i <= 10; i++ {
 		count := upToten + i
 		fmt.Printf("%v ", count)
-
 	}
+
+	//if using a special character they can hold a value
+	//over 1 (ex. ő is 2)
+	for num, char := range "Hello There sir" {
+		fmt.Printf("\n %c is the character, %d is the position \n", char, num)
+	}
+
+	fmt.Println()
+
+	lmao := 0
+
+	switch lmao {
+	case 0:
+		fmt.Println("test")
+		fallthrough
+	case 1:
+		fmt.Println("one")
+	case 2:
+		fmt.Println("five")
+	case 4:
+		break
+	default:
+		fmt.Println("three")
+	}
+
+	//declaring arrays
+	var arr [10]int
+	arr[0] = 42
+
+	//to have numbers already inside
+	arr2 := [4]int{1, 2, 3, 4}
+
+	fmt.Println("\nArray Dropdown")
+
+	for i := 0; i < 4; i++ {
+		fmt.Printf("%d \n", arr2[i])
+	}
+
+	//slices are a more lightweight and customizable array
+
+	arr2slice := arr2[1:3] //includes the low (1) and excludes the high (4)
+
+	fmt.Printf("This is the slice %v\n", arr2slice)
+
+	// u can make slices larges by utilizing append and copy
+
+	arr2slice2 := append(arr2slice, 5, 7)
+
+	fmt.Printf("This is the slice now %v\n", arr2slice2)
+
+	arr2slice3 := append(arr2slice, arr2slice2...) //the dots specify your appending another slice not one value
+	fmt.Printf("This is the slice now %v\n", arr2slice3)
+
+	testmake := make([]int, 5) //creates slice of that size
+
+	fmt.Printf("This is the slice now %v\n", testmake)
+
+	n1 := copy(testmake, arr2slice2[0:]) // copies arr2slices data into testmake and assigns n1 to
+	// the first value in the slice "arr2slice2"
+
+	fmt.Printf("This is the slice now %v and n1 is %v\n", testmake, n1)
+
 }

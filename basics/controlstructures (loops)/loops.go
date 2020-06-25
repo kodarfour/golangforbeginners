@@ -74,13 +74,49 @@ func main() {
 	arr2slice3 := append(arr2slice, arr2slice2...) //the dots specify your appending another slice not one value
 	fmt.Printf("This is the slice now %v\n", arr2slice3)
 
-	testmake := make([]int, 5) //creates slice of that size
+	testmake := make([]int, 5) //creates empty slice of that size
 
 	fmt.Printf("This is the slice now %v\n", testmake)
 
 	n1 := copy(testmake, arr2slice2[0:]) // copies arr2slices data into testmake and assigns n1 to
-	// the first value in the slice "arr2slice2"
+	// the number of values copied into the slice "arr2slice2"
 
 	fmt.Printf("This is the slice now %v and n1 is %v\n", testmake, n1)
+
+	//maps
+	//declaring maps works map[firstype]secondtype
+	//u must use make to create an empty map
+
+	dcspeedsters := map[string]int{
+		"Wally West": 1, "Barry Allen": 2,
+		"Reverse-Flash": 3, "Superman": 4,
+		"The Black Racer": 5, "Cheetah": 6,
+		"Wonder Woman": 7, "God Speed": 8,
+		"Shazam": 9, "Kid Flash": 10,
+	}
+
+	fmt.Println("\nUnedited Map")
+
+	for name, num := range dcspeedsters {
+		//in range loops, u can use "_" if you are trying to focus on one  variable
+		fmt.Printf("%s is the number %d speedster in the DC Universe.\n", name, num)
+	}
+
+	//adding new hero
+	dcspeedsters["Quicksilver"] = 11
+
+	//deleting hero
+	delete(dcspeedsters, "Cheetah")
+	//to test for existence you would use the following: value, present := monthdays["Jan"]
+	//It’s more Go like to name present “ok”, and use: v, ok := monthdays["Jan"].
+	//In Go we call this the “comma ok” form
+	//in general the syntax delete(m, x) will delete the map entry retrieved by the expression m[x].
+
+	fmt.Println("\nEdited Map")
+
+	for name, num := range dcspeedsters {
+		//in range loops, u can use "_" if you are trying to focus on one  variable
+		fmt.Printf("%s is the number %d speedster in the DC Universe.\n", name, num)
+	}
 
 }

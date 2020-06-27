@@ -1,0 +1,8 @@
+
+	switch len(slice) {
+	case 0:
+		avg := 0
+	default:
+		size += len(slice)
+		avg = size / float64(len(slice))
+	}

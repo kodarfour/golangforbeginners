@@ -15,6 +15,14 @@ func evenOnly(i int) {
 	fmt.Println(globe)
 }
 
+func doubleit(x int) { //declare function that does "something"
+	fmt.Println("%v \n", x*2)
+}
+
+func callback(y int, d func(int)) { //call back like so
+	d(y)
+}
+
 func main() {
 	evenOnly(2)
 
@@ -25,5 +33,16 @@ func main() {
 		fmt.Println("*dabs*")
 	}
 	dabMachine()
+
+	for i := 0; i <= 10; i++ {
+		defer fmt.Printf("%v ", i) //follows Last in First out format
+	}
+
+	deferredWorld := func() {
+		defer fmt.Println("World!") //waits til function is complete before printing world
+		fmt.Println("Hello,")
+	}
+
+	deferredWorld()
 
 }

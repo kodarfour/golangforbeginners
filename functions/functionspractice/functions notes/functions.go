@@ -15,17 +15,33 @@ func evenOnly(i int) {
 	fmt.Println(globe)
 }
 
-func doubleit(x int) { //declare function that does "something"
-	fmt.Println("%v \n", x*2)
+func thenAddIt(y int, d func(dx int) int) int { //call back like so
+	i := d(y)
+	i += y
+	return i
 }
 
-func callback(y int, d func(int)) { //call back like so
-	d(y)
+//Variadic Function
+//Functions that take a variable number of parameters are known as variadic functions.
+//To declare a function as variadic, do something like this:
+func addThenSub(num ...int) { //this function alternates between adding and subtracting to find the total
+	var total int
+	for pos, i := range num {
+		if pos%2 == 0 {
+			total += num[i-1]
+		} else if pos == 0 {
+			total += num[i-1]
+		} else {
+			total -= num[i-1]
+		}
+	}
+	fmt.Println(total)
 }
 
 func main() {
-	evenOnly(2)
-
+	evenOnly(2) //printing only even numbers func
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//global variables and declaring variable as func
 	globe = 3 //turns to local variable (within this scope)
 
 	fmt.Println(globe)
@@ -33,9 +49,19 @@ func main() {
 		fmt.Println("*dabs*")
 	}
 	dabMachine()
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//callbacks (this section doubles the int then adds an int of the same int being doubles)
+	//ex 3*2+3, 5*2+5
+	doubleIt := func(x int) int { //declare function that does "something" (callbacks)
+		i := x * 2
+		return i
+	}
 
+	fmt.Println(thenAddIt(2, doubleIt)) //callback in main
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//defer notes
 	for i := 0; i <= 10; i++ {
-		defer fmt.Printf("%v ", i) //follows Last in First out format
+		defer fmt.Printf("%v ", i) //follows Last in First out format (this will always print last)
 	}
 
 	deferredWorld := func() {
@@ -44,5 +70,7 @@ func main() {
 	}
 
 	deferredWorld()
-
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Variadic Function
+	addThenSub(1, 2, 3, 4) //adds 1 subs 2 adds 3 subs 4 = -2
 }

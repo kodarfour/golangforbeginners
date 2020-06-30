@@ -3,39 +3,18 @@ package main
 import "fmt"
 
 func main() {
-	arr := []int{4, 3, 1, 32, 2, 58}
-	fmt.Println(bubbleSort(arr))
+	arr := []int{5, -1, 0, 12, 3, 5}
+	fmt.Printf("unsorted %v\n", arr)
+	bubblesort(arr)
+	fmt.Printf("sorted %v\n", arr)
 }
 
-func bubbleSort(unsorted []int) (sorted []int) {
-	var temp int
-	var swapped bool
-	swapped = false
-keepSwapping:
-	for pos := range unsorted { //goes through place holders
-		defer fmt.Printf("%v ", pos)
-		if pos >= 5 {
-			break
-		}
-		if pos >= len(unsorted)-1 {
-			panic("runtime error: out of range")
-		}
-		if unsorted[pos] > unsorted[pos+1] {
-
-			temp = unsorted[pos]
-			unsorted[pos] = unsorted[pos+1]
-			unsorted[pos+1] = temp
-			swapped = true
+func bubblesort(n []int) {
+	for i := 0; i < len(n)-1; i++ {
+		for j := i + 1; j < len(n); j++ {
+			if n[j] < n[i] {
+				n[i], n[j] = n[j], n[i]
+			}
 		}
 	}
-	if swapped != true {
-		goto keepSwapping
-	}
-	sorted = unsorted
-	return
-
-}
-
-func swap(x int, y int) {
-
 }

@@ -8,11 +8,15 @@ type stack struct {
 }
 
 func (s *stack) push(k int) {
-	if s.i+1 > 9 {
-		return
-	}
 	s.data[s.i] = k
 	s.i++
+}
+
+func (s *stack) pop() int {
+	s.i--
+	ret := s.data[s.i]
+	s.data[s.i] = 0
+	return ret
 }
 
 func main() {

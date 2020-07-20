@@ -139,4 +139,37 @@ func main() {
 			}
 		}
 	}
+}// A Mutex is a data type with two methods, Lock and Unlock.
+type Mutex struct         { /* Mutex fields */ }
+func (m *Mutex) Lock()    { /* Lock impl. */ }
+func (m *Mutex) Unlock()  { /* Unlock impl. */ }
+func main() {
+    k1 := vector.IntVector{}
+    k2 := &vector.IntVector{}
+    k3 := new(vector.IntVector)
+    k1.Push(2)
+    k2.Push(3)
+    k3.Push(4)
+}
+type S struct { i int }
+func (p *S) Get() int  { return p.i }
+func (p *S) Put(v int) { p.i = v }
+type R struct { i int }
+func (p *R) Get() int  { return p.i }
+func (p *R) Put(v int) { p.i = v }
+func f(p I) {
+    switch t := p.(type) { 1
+        case *S: 2
+        case *R: 2
+        default: 3
+    }
+}
+func sort(i []interface{}) {  1
+    switch i.(type) {         2
+    case string:              3
+        // ...
+    case int:
+        // ...
+    }
+    return /* ... */          4
 }

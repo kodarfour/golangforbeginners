@@ -206,4 +206,92 @@ func ShowTag(i interface{}) { 1
     switch t := reflect.TypeOf(i); t.Kind() {
     case reflect.Ptr: 2
         tag := t.Elem().Field(0).Tag
-    //             <<3>>     <<4>>       <<5>>
+	//             <<3>>     <<4>>       <<5>>
+	type e interface{}
+
+func mult2(f e) e {
+	switch f.(type) {
+	case int:
+		return f.(int) * 2
+	case string:
+		return f.(string) + f.(string) + f.(string) + f.(string)
+	}
+	return f
+}
+
+func Map(n []e, f func(e) e) []e {
+	m := make([]e, len(n))
+	for k, v := range n {
+		m[k] = f(v)
+	}
+	return m
+}
+
+func main() {
+	m := []e{1, 2, 3, 4}
+	s := []e{"a", "b", "c", "d"}
+	mf := Map(m, mult2)
+	sf := Map(s, mult2)
+	fmt.Printf("%v\n", mf)
+	fmt.Printf("%v\n", sf)
+}
+
+func main() {
+
+}
+
+func TestEven(t *testing.T) {
+    if Even(2) {
+        t.Log("2 should be odd!")
+        t.Fail()
+    }
+}package even 1
+
+import "testing" 2
+
+func TestEven(t *testing.T) { 3
+	if !Even(2) {
+		t.Log("2 should be even!")
+		t.Fail()
+	}
+}func ExampleEven() {
+    if Even(2) {
+        fmt.Printf("Is even\n")
+    }
+    // Output: 1
+    // Is even
+}
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
+
+var reader *bufio.Reader = bufio.NewReader(os.Stdin)
+var st = new(Stack)
+
+type Stack struct {
+	i    int
+	data [10]int
+}
+
+func (s *Stack) push(k int) {
+	if s.i+1 > 9 {
+		return
+	}
+	s.data[s.i] = k
+	s.i++
+}
+
+func (s *Stack) pop() (ret int) {
+	s.i--
+	if s.i < 0 {
+		s.i = 0
+		return
+	}
+	ret = s.data[s.i]
+	return
+}

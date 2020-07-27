@@ -294,4 +294,55 @@ func (s *Stack) pop() (ret int) {
 	}
 	ret = s.data[s.i]
 	return
+}t.Fail()
+}
+}package even 1
+
+import "testing" 2
+
+func TestEven(t *testing.T) { 3
+if !Even(2) {
+	t.Log("2 should be even!")
+	t.Fail()
+}
+}func ExampleEven() {
+if Even(2) {
+	fmt.Printf("Is even\n")
+}
+// Output: 1
+// Is even
+}
+package main
+
+import (
+"bufio"
+"fmt"
+"os"
+"strconv"
+)
+
+var reader *bufio.Reader = bufio.NewReader(os.Stdin)
+var st = new(Stack)
+
+type Stack struct {
+i    int
+data [10]int
+}
+
+func (s *Stack) push(k int) {
+if s.i+1 > 9 {
+	return
+}
+s.data[s.i] = k
+s.i++
+}
+
+func (s *Stack) pop() (ret int) {
+s.i--
+if s.i < 0 {
+	s.i = 0
+	return
+}
+ret = s.data[s.i]
+return
 }
